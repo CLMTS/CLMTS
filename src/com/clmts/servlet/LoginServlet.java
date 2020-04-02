@@ -14,10 +14,28 @@ import java.io.IOException;
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         doPost(request,response);
+         doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         String uname=request.getParameter("uname");
+         String upwd=request.getParameter("upwd");
 
+         if(uname.equals("sh")&&upwd.equals("123")){
+             request.getRequestDispatcher("show.jsp").forward(request, response);
+         }else if (uname.equals("lgr")&&upwd.equals("123")){
+             request.getRequestDispatcher("show.jsp").forward(request, response);
+         }
+         else if (uname.equals("ltt")&&upwd.equals("123")){
+             request.getRequestDispatcher("show.jsp").forward(request, response);
+         }
+         else if (uname.equals("sml")&&upwd.equals("123")){
+             request.getRequestDispatcher("show.jsp").forward(request, response);
+         }
+         else if (uname.equals("cjh")&&upwd.equals("123")){
+             request.getRequestDispatcher("show.jsp").forward(request, response);
+         }else{
+             request.getRequestDispatcher("index.jsp").forward(request, response);
+         }
     }
 }
