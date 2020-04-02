@@ -13,8 +13,8 @@
   <body>
       <form action="LoginServlet">
         账号：<input type="text" value="uname"><br>
-        密码：<<input type="password" value="upwd"><<br>
-        <input type="button"  value="登陆">
+        密码：<input type="password" value="upwd"><br>
+        <input type="submit"  value="登陆">
       </form>
   </body>
 </html>
