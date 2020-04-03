@@ -14,9 +14,9 @@ import java.sql.SQLException;
 public class ManagerDaoImpl implements ManagerDao {
     ResultSet rs=null;
     @Override
-    public Manager queryManager(int uid,String uname, String upwd) throws SQLException {
+    public Manager queryManager(String uname) throws SQLException {
         Manager manager=null;
-        String sql="select * from manager where uid=?";
+        String sql="select * from manager where uname=?";
         rs=DBUtil.executeQuery(sql);
         while(rs.next()){
             manager=new Manager();
