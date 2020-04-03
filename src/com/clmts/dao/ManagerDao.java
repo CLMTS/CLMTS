@@ -8,6 +8,6 @@ import com.clmts.bean.Manager;
  */
 public interface ManagerDao {
     //登陆
-    Manager queryManager(int uid, String uname, String upwd) throws Exception;
+    Manager queryManager(String uname) throws Exception;
 
 }
