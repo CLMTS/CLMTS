@@ -11,15 +11,15 @@ public class Order_ItemDaoImpl implements Order_ItemDao {
     @Override
     public boolean addIteam(int product_id, double price, String order_id) throws Exception {
         int row=0;
-        String sql="insert into order_item values(null,?,?,?)";
-        row= DBUtil.executeUpdate(sql,product_id,price,order_id);
+        String sql="insert into `order_item` values(null,?,?,?)";
+        row= DBUtil.executeUpdate(sql,price,product_id,order_id);
         return (row!=0)?true:false;
     }
 
     @Override
     public boolean delIteam(int item_id, int product_id, double price, String order_id) throws Exception {
         int row=0;
-        String sql="delete from order_item where item_id=?";
+        String sql="delete from `order_item` where item_id=?";
         row= DBUtil.executeUpdate(sql,item_id);
         return (row!=0)?true:false;
     }

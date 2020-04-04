@@ -16,7 +16,7 @@ public class ManagerDaoImpl implements ManagerDao {
     @Override
     public Manager queryManager(String uname) throws SQLException {
         Manager manager=null;
-        String sql="select * from manager where username=?";
+        String sql="select * from `manager` where username=?";
         rs=DBUtil.executeQuery(sql, uname);
         while(rs.next()){
             manager=new Manager();
@@ -26,4 +26,19 @@ public class ManagerDaoImpl implements ManagerDao {
         }
         return manager;
     }
+
+    @Override
+    public Manager queryManagerById(int id) throws Exception {
+        Manager manager=null;
+        String sql="select * from `manager` where id=?";
+        rs=DBUtil.executeQuery(sql, id);
+        while(rs.next()){
+            manager=new Manager();
+            manager.setUid(rs.getInt("id"));
+            manager.setUname(rs.getString("username"));
+            manager.setUpwd(rs.getString("password"));
+        }
+        return manager;
+    }
+
 }

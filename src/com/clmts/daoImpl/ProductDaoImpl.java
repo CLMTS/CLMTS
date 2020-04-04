@@ -18,7 +18,7 @@ public class ProductDaoImpl implements ProductDao{
     @Override
     public boolean addProduct(int pid, String pname, double price) throws SQLException {
         int row=0;
-        String sql="insert into product(pid, pname, price) values(?,?,?)";
+        String sql="insert into `product`(pid, pname, price) values(?,?,?)";
         row= DBUtil.executeUpdate(sql,pid,pname,price);
         return (row!=0)?true:false;
     }
@@ -26,7 +26,7 @@ public class ProductDaoImpl implements ProductDao{
     @Override
     public boolean delProduct(int pid) throws SQLException {
         int row=0;
-        String sql="delete from product where pid=?";
+        String sql="delete from `product` where pid=?";
         row=DBUtil.executeUpdate(sql,pid);
         return (row!=0)?true:false;
     }
@@ -34,7 +34,7 @@ public class ProductDaoImpl implements ProductDao{
     @Override
     public boolean updateProduct(int pid, String pname, double price) throws SQLException {
         int row=0;
-        String sql="update product set pname=?,price=? where pid=?";
+        String sql="update `product` set pname=?,price=? where pid=?";
         row=DBUtil.executeUpdate(sql,pid,pname,price);
         return (row!=0)?true:false;
     }
@@ -42,7 +42,7 @@ public class ProductDaoImpl implements ProductDao{
     @Override
     public Product queryOneProduct(int pid) throws SQLException {
         Product product=null;
-        String sql="select * from product where pid=?";
+        String sql="select * from `product` where pid=?";
         rs=DBUtil.executeQuery(sql,pid);
         while(rs.next()){
             product=new Product();
@@ -57,7 +57,7 @@ public class ProductDaoImpl implements ProductDao{
     @Override
     public List<Product> queryAllProduct() throws SQLException {
         List<Product> list=new ArrayList<>();
-        String sql="select * from product";
+        String sql="select * from `product`";
         rs=DBUtil.executeQuery(sql);
         while(rs.next()){
             Product product=new Product();
