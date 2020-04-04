@@ -1,6 +1,7 @@
 <%@ page import="com.clmts.bean.Order" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.clmts.bean.Order_Item" %><%--
+<%@ page import="com.clmts.bean.Order_Item" %>
+<%--
   Created by IntelliJ IDEA.
   User: HP
   Date: 2020/4/2
@@ -8,20 +9,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core %>
 <html>
 <head>
     <title>订单信息</title>
 </head>
 <body>
-<%
-    List<Order> order = (List<Order>)request.getAttribute("orders");
-
-%>
 <table border="1px">
     <tr>
-
-        <th>产品</th>
-        <th>产品价格</th>
         <th>订单id</th>
         <th>订单时间</th>
         <th>下单经理</th>
@@ -30,41 +25,18 @@
         <th>顾客电话</th>
         <th>总价</th>
     </tr>
-
-    <%
-        List<Order> orders = (List<Order>)request.getAttribute("");
-    %>
-
-    <%
-        List<Order_Item> order_items = (List<Order_Item>)request.getAttribute("");
-    %>
-    <%
-        for (Order_Item order_item:order_items){
-    %>
-    <td><%=order_item.getProduct_id() %></td>
-    <td><%=order_item.getPrice() %></td>
-
-
-    <%
-        }
-    %>
-    <%
-        for(Order order1:orders){
-    %>
+    <c:forEach items="${requestScope.order_list}" var="order">
     <tr>
-        <td><%= order1.getOrder_id() %></td>
-        <td><%= order1.getTime() %></td>
-        <td><%= order1.getManager() %></td>
-        <td><%= order1.getCustom_name() %></td>
-        <td><%= order1.getCustom_address() %></td>
-        <td><%= order1.getCustom_phone() %></td>
-        <td><%= order1.getTotal() %></td>
-        <%
-            }
-        %>
-
+        <td>${order.order_id}</td>
+        <td>${order.time}</td>
+        <td>${order.manager.uname}</td>
+        <td>${order.custom_name}</td>
+        <td>${order.custom_address}</td>
+        <td>${order.custom_phone}</td>
+        <td>${order.total}</td>
+        <td></td>
     </tr>
-
+    </c:forEach>
 
 </table>
 
