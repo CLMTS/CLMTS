@@ -24,7 +24,6 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("LoginServlet...");
-        System.out.println("-----------");
 
         // 获取输入的用户名密码
         String uname = request.getParameter("uname");
@@ -32,7 +31,6 @@ public class LoginServlet extends HttpServlet {
 
         System.out.println(uname);
         System.out.println(upwd);
-        System.out.println("----------");
 
         ManagerService manager = new ManagerServiceImpl();
         // 判断密码是否正确
@@ -47,7 +45,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("success\n-----------");
 
             // 跳转至订单界面
-            response.sendRedirect("/order/searchOrder.do");
+            response.sendRedirect("order/searchOrder.do");
         } else {
             // 登录失败，重新登陆
             System.out.println("failed\n-----------");

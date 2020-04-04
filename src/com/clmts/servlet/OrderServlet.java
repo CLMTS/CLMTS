@@ -95,4 +95,14 @@ public class OrderServlet extends HttpServlet {
         request.getRequestDispatcher("/show.jsp").forward(request, response);
         System.out.println("----- ---- --");
     }
+
+    protected void searchOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("OrderServlet.searchOne...");
+        String order_id = request.getParameter("order_id");
+        OrderService orderService = new OrderServiceImpl();
+        Order order = orderService.searchOne(order_id);
+        request.setAttribute("order", order);
+        request.getRequestDispatcher("/detail.jsp").forward(request, response);
+        System.out.println("----- ---- --");
+    }
 }
