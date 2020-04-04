@@ -1,6 +1,7 @@
 package com.clmts.bean;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author suhao
@@ -14,6 +15,8 @@ public class Order {
     private String custom_phone;
     private String custom_address;
     private double total;
+    private List<Order_Item> orderItemList;
+
 
     public Order() {
     }
@@ -82,5 +85,13 @@ public class Order {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public List<Order_Item> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<Order_Item> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 }

@@ -9,6 +9,7 @@ public class Order_Item {
     private int product_id ;
     private double price;
     private String order_id;
+    private Product product;
 
     public Order_Item() {
     }
@@ -50,5 +51,13 @@ public class Order_Item {
 
     public void setOrder_id(String order_id) {
         this.order_id = order_id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
