@@ -21,10 +21,10 @@
     }
 </script>
 <body>
-<form>
+<form action="/OrderServlet">
     用户姓名:<input name="name" type="text">
     用户电话:<input name="phone" type="tel">
-    配送地址:<input name="address" type="text">
+    配送地址:<input name="address" type="text"><br><br>
     <div id="order-tiem"></div>
     <button onclick="fun()">添加商品</button>
     <select name="product_id">
