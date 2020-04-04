@@ -62,7 +62,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Order queryOneOrder(String order_id) throws SQLException {
+    public Order queryOneOrder(String order_id) throws Exception {
         Order order=null;
         String sql="select * from `order` where order_id=?";
         rs=DBUtil.executeQuery(sql,order_id);
@@ -72,9 +72,10 @@ public class OrderDaoImpl implements OrderDao {
             order.setCustom_address(rs.getString("custom_address"));
             order.setCustom_phone(rs.getString("custom_phone"));
             order.setCustom_name(rs.getString("custom_name"));
-            order.setManager((Manager)rs.getObject("manager"));
+            order.setManager(new ManagerDaoImpl().queryManagerById(rs.getInt("manager")));
             order.setTime(rs.getDate("time"));
             order.setOrder_id(rs.getString("order_id"));
+            order.setOrderItemList(new Order_ItemDaoImpl().queryItem(rs.getString("order_id")));
         }
 
         return order;
@@ -94,6 +95,7 @@ public class OrderDaoImpl implements OrderDao {
             order.setCustom_phone(rs.getString("custom_phone"));
             order.setCustom_address(rs.getString("custom_address"));
             order.setTotal(rs.getDouble("total"));
+            order.setOrderItemList(new Order_ItemDaoImpl().queryItem(rs.getString("order_id")));
             list.add(order);
         }
         return list;
