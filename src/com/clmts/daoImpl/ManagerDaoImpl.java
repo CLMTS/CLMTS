@@ -16,13 +16,13 @@ public class ManagerDaoImpl implements ManagerDao {
     @Override
     public Manager queryManager(String uname) throws SQLException {
         Manager manager=null;
-        String sql="select * from manager where uname=?";
-        rs=DBUtil.executeQuery(sql);
+        String sql="select * from manager where username=?";
+        rs=DBUtil.executeQuery(sql, uname);
         while(rs.next()){
             manager=new Manager();
-            manager.setUid(rs.getInt("uid"));
-            manager.setUname(rs.getString("uname"));
-            manager.setUpwd(rs.getString("upwd"));
+            manager.setUid(rs.getInt("id"));
+            manager.setUname(rs.getString("username"));
+            manager.setUpwd(rs.getString("password"));
         }
         return manager;
     }

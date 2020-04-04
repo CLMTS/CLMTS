@@ -18,10 +18,10 @@ import java.util.List;
 public class OrderDaoImpl implements OrderDao {
     ResultSet rs=null;
     @Override
-    public boolean addOrder(String order_id, Date time, Manager manager, String custom_name, String custom_phone, String custom_address,double total) throws SQLException {
+    public boolean addOrder(String order_id, String time, int manager_id, String custom_name, String custom_phone, String custom_address,double total) throws SQLException {
         int row=0;
         String sql="insert into order(order_id,time,manager,custom_name,custom_phone,custom_address) values (?,?,?,?,?,?,?)";
-        row= DBUtil.executeUpdate(sql,order_id,time,manager,custom_name,custom_phone,custom_address);
+        row= DBUtil.executeUpdate(sql,order_id,time,manager_id,custom_name,custom_phone,custom_address);
         return (row!=0)?true:false;
     }
 
@@ -34,7 +34,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public boolean updateOrder(String order_id, Date time, Manager manager, String custom_name, String custom_phone, String custom_address,double total) throws SQLException {
+    public boolean updateOrder(String order_id, String time, Manager manager, String custom_name, String custom_phone, String custom_address,double total) throws SQLException {
         int row=0;
         String sql="update order set time=?,manager=?,custom_name=?,custom_phone=?,custom_address=?,total=? where order_id=?";
         row=DBUtil.executeUpdate(sql,time,manager,custom_name,custom_phone,custom_address,total);
@@ -49,7 +49,7 @@ public class OrderDaoImpl implements OrderDao {
         while(rs.next()){
             Order order=new Order();
             order.setOrder_id(rs.getString("order_id"));
-            order.setTime(rs.getTime("time"));
+            order.setTime(rs.getTimestamp("time"));
             order.setManager((Manager)rs.getObject("manager"));
             order.setCustom_name(rs.getString("custom_name"));
             order.setCustom_phone(rs.getString("custom_phone"));
