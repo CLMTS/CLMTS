@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("success\n-----------");
 
             // 跳转至订单界面
-            response.sendRedirect("records.jsp");
+            response.sendRedirect("/order/searchOrder.do");
         } else {
             // 登录失败，重新登陆
             System.out.println("failed\n-----------");
