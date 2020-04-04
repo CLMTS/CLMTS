@@ -97,4 +97,20 @@ public class OrderServiceImpl implements OrderService {
         System.out.println("----- ---- --");
         return orderList;
     }
+
+    @Override
+    public Order searchOne(String order_id) {
+        System.out.println("OrderServiceImpl.searchOne...");
+        Order order = null;
+        OrderDao orderDao = new OrderDaoImpl();
+        try {
+            DBUtil.getConn();
+            order = orderDao.queryOneOrder(order_id);
+            DBUtil.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
 }

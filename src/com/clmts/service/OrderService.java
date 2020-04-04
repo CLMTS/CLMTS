@@ -8,4 +8,6 @@ public interface OrderService {
     boolean takeOrder(int manager_id, String name, String phone, String address, int[] product_id, double[] price);
 
     List<Order> searchOrder();
+
+    Order searchOne(String order_id);
 }
