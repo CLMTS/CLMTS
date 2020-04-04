@@ -12,7 +12,8 @@ public class ManagerServiceImpl implements ManagerService {
     private Connection conn;
     @Override
     public int login(String uname, String upwd) {
-        conn= DBUtil.getConn();
+        System.out.println("ManagerServiceImpl.login...");
+        DBUtil.getConn();
         Manager manager=null;
         ManagerDao managerDao=new ManagerDaoImpl();
         int uid=0;
@@ -25,6 +26,7 @@ public class ManagerServiceImpl implements ManagerService {
             }else {
                 uid=manager.getUid();
             }
+            DBUtil.close();
         }catch (Exception e){
             e.printStackTrace();}
         return uid;

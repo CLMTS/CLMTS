@@ -7,8 +7,8 @@ import java.util.List;
 public class DBUtil {
 
     private static final String driver   = "com.mysql.jdbc.Driver";   // 数据库驱动
-    private static final String url      = "jdbc:mysql://192.168.43.130:3306/class_design?characterEncoding=UTF-8";// 数据库地址
-    private static final String username = "lmx";                // 数据库用户名
+    private static final String url      = "jdbc:mysql://120.79.33.215:3306/CLMTS?characterEncoding=UTF-8";// 数据库地址
+    private static final String username = "suhao";                // 数据库用户名
     private static final String password = "123";            // 数据库密码
     private static PreparedStatement ps  = null;
     private static ResultSet         rs  = null;
@@ -32,7 +32,6 @@ public class DBUtil {
                 threadlocal.set(conn);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             System.out.println("link failed");
             e.printStackTrace();
         }
