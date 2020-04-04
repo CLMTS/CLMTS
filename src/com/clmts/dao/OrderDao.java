@@ -26,7 +26,8 @@ public interface OrderDao {
     //查询单条订单
     Order queryOneOrder(String order_id) throws Exception;
 
-
+    // 查询所有订单
+    List<Order> queryAll() throws Exception;
 
 
 }

@@ -10,4 +10,6 @@ public interface ManagerDao {
     //登陆
     Manager queryManager(String uname) throws Exception;
 
+    // 搜索
+    Manager queryManagerById(int id) throws Exception;
 }
