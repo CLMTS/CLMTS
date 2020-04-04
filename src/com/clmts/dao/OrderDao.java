@@ -12,13 +12,13 @@ import java.util.List;
  */
 public interface OrderDao {
     //添加订单
-    boolean addOrder(String order_id, Date time, Manager manager,String custom_name,String custom_phone,String custom_address,double total) throws Exception;
+    boolean addOrder(String order_id, String time, int manager_id,String custom_name,String custom_phone,String custom_address,double total) throws Exception;
 
     //删除订单
     boolean delOrder(String order_id) throws Exception;
 
     //更新订单
-    boolean updateOrder(String order_id, Date time, Manager manager,String custom_name,String custom_phone,String custom_address,double total) throws Exception;
+    boolean updateOrder(String order_id, String time, Manager manager,String custom_name,String custom_phone,String custom_address,double total) throws Exception;
 
     //根据用户查订单
     List<Order> queryByUser(String order_id) throws Exception;
