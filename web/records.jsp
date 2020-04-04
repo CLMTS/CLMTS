@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 <head>
@@ -17,19 +18,24 @@
         var div = document.getElementById("order-item");
         var one_item = document.createElement("div");
         div.appendChild(one_item);
-        var select = document.createElement("select");
-        select.name = "product_id";
-        one_item.appendChild(select);
-        var option1 = document.createElement("option");
-        option1.value = "1";
-        var option2 = document.createElement("option");
-        option2.value = "2";
-        select.appendChild(option1);
-        var text1 = document.createTextNode("洗发水");
-        option1.appendChild(text1);
-        select.appendChild(option2);
-        var text2 = document.createTextNode("沐浴露");
-        option2.appendChild(text2);
+            var select = document.createElement("select");
+            select.name = "product_id";
+            one_item.appendChild(select);
+            /*
+                var option1 = document.createElement("option");
+                option1.value = "1";
+                select.appendChild(option1);
+                var text1 = document.createTextNode("洗发水");
+                option1.appendChild(text1);
+
+             */
+                <c:forEach items="${requestScope.productList}" var="product" varStatus="status">
+                    var option${status.index+1} = document.createElement("option");
+                    option${status.index+1}.value = "${status.index+1}";
+                    select.appendChild(option${status.index+1});
+                    var text${status.index+1} = document.createTextNode("${product.pname}"+"(￥${product.price})");
+                    option${status.index+1}.appendChild(text${status.index+1});
+                </c:forEach>
         one_item.appendChild(document.createTextNode("价格"));
         var price = document.createElement("input");
         price.name = "price";
@@ -43,11 +49,11 @@
 </script>
 <body>
 <div style="text-align: center;">
-<form action="/order/addOrder.do" method="post">
+<form action="${pageContext.request.contextPath}/order/addOrder.do" method="post">
     用户姓名:<input name="name" type="text"><br>
     用户电话:<input name="phone" type="tel"><br>
     配送地址:<input name="address" type="text"><br><br>
-    <div id="order-item"></div>
+    <div id="order-item">
     <!--
     <div id="one-item">
         <select name="product_id">
@@ -57,6 +63,7 @@
         价格:<input name="price" type="text">
     </div>
     -->
+    </div>
     <br>
     <input type="button" value="添加商品" id="button" onclick="fun()">
     <input type="button" value="移除商品" id="button1" onclick="fun1()"><br>
