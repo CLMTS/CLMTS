@@ -8,18 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "OrderServlet")
+@WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("OrderServlet...\n-----------");
         // 获取订单的 顾客姓名、电话、地址、商品编号、销售单价
         // 订单编号由时间戳+经理id合成
         // 下单时间、总价由后台自动计算生成
+        HttpSession session = request.getSession();
+        int manager_id = (Integer) session.getAttribute("manager_id");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
@@ -27,6 +31,15 @@ public class OrderServlet extends HttpServlet {
         // 将商品编号和售价存储至数组
         String[] id_str = request.getParameterValues("product_id");
         String[] price_str = request.getParameterValues("price");
+
+        System.out.println(manager_id);
+        System.out.println(name);
+        System.out.println(phone);
+        System.out.println(address);
+        System.out.println(id_str);
+        System.out.println(price_str);
+        System.out.println("-----------");
+
         // 创建数值型数组用于存储转化后的编号和售价
         int[] product_id = new int[id_str.length];
         double[] price = new double[price_str.length];
@@ -37,9 +50,13 @@ public class OrderServlet extends HttpServlet {
         }
 
         OrderService order = new OrderServiceImpl();
-        boolean flag = order.takeOrder(name, phone, address, product_id, price);
+        boolean flag = order.takeOrder(manager_id, name, phone, address, product_id, price);
 
         String msg = flag ? "success!" : "failed!";
+
+        System.out.println(msg);
+        System.out.println("-----------");
+
         request.setAttribute("msg", msg);
         request.getRequestDispatcher("show.jsp").forward(request, response);
     }
