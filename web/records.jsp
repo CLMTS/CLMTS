@@ -36,23 +36,32 @@
         price.type = "text";
         one_item.appendChild(price);
     }
+    function fun1() {
+        var list = document.getElementById("order-item");
+        list.removeChild(list.childNodes[list.childNodes.length-1]);
+    }
 </script>
 <body>
-<form action="OrderServlet" method="post">
+<div style="text-align: center;">
+<form action="/order/addOrder.do" method="post">
     用户姓名:<input name="name" type="text"><br>
     用户电话:<input name="phone" type="tel"><br>
     配送地址:<input name="address" type="text"><br><br>
     <div id="order-item"></div>
     <!--
+    <div id="one-item">
         <select name="product_id">
             <option value="1">洗发水</option>
             <option value="2">沐浴露</option>
         </select>
         价格:<input name="price" type="text">
+    </div>
     -->
     <br>
-    <input type="button" value="add" id="button" onclick="fun()">
+    <input type="button" value="添加商品" id="button" onclick="fun()">
+    <input type="button" value="移除商品" id="button1" onclick="fun1()"><br>
     <input type="submit" value="提交">
 </form>
+</div>
 </body>
 </html>
