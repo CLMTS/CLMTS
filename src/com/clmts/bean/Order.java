@@ -18,6 +18,16 @@ public class Order {
     public Order() {
     }
 
+    public Order(String order_id, Date time, Manager manager, String custom_name, String custom_phone, String custom_address, double total) {
+        this.order_id = order_id;
+        this.time = time;
+        this.manager = manager;
+        this.custom_name = custom_name;
+        this.custom_phone = custom_phone;
+        this.custom_address = custom_address;
+        this.total = total;
+    }
+
     public String getOrder_id() {
         return order_id;
     }
